@@ -1,0 +1,102 @@
+Questionnaire
+
+(If you're not sure of the answer to a question, try watching the next lesson and then coming back to this one, or read the first two chapters of the book.)
+
+01 Can we always use a random sample for a validation set? Why or why not?
+    A good validation or test set should be representative of new data you will see in the future. Sometimes this isn’t true if a random sample is used. For example, for time series data, selecting sets randomly does not make sense. Instead, defining different time periods for the train, validation, and test set is a better approach.
+    
+02 What is overfitting? Provide an example.
+    Overfitting is the most challenging issue when it comes to training machine learning models. Overfitting refers to when the model fits too closely to a limited set of data but does not generalize well to unseen data. This is especially important when it comes to neural networks, because neural networks can potentially “memorize” the dataset that the model was trained on, and will perform abysmally on unseen data because it didn’t “memorize” the ground truth values for that data. This is why a proper validation framework is needed by splitting the data into training, validation, and test sets.
+
+03 What is a metric? How does it differ from "loss"?
+    A metric is a function that measures quality of the model’s predictions using the validation set. This is similar to the ­ loss , which is also a measure of performance of the model. However, loss is meant for the optimization algorithm (like SGD) to efficiently update the model parameters, while metrics are human-interpretable measures of performance. Sometimes, a metric may also be a good choice for the loss.
+    
+04 How can pretrained models help?
+    Pretrained models have been trained on other problems that may be quite similar to the current task. For example, pretrained image recognition models were often trained on the ImageNet dataset, which has 1000 classes focused on a lot of different types of visual objects. Pretrained models are useful because they have already learned how to handle a lot of simple features like edge and color detection. However, since the model was trained for a different task than already used, this model cannot be used as is.
+    
+05 What is the "head" of a model?
+    When using a pretrained model, the later layers of the model, which were useful for the task that the model was originally trained on, are replaced with one or more new layers with randomized weights, of an appropriate size for the dataset you are working with. These new layers are called the “head” of the model.
+    
+06 What kinds of features do the early layers of a CNN find? How about the later layers?
+    Earlier layers learn simple features like diagonal, horizontal, and vertical edges. Later layers learn more advanced features like car wheels, flower petals, and even outlines of animals.
+    
+07 Are image models only useful for photos?
+    However, a lot of information can be represented as images . For example, a sound can be converted into a spectrogram, which is a visual interpretation of the audio. Time series (ex: financial data) can be converted to image by plotting on a graph. Even better, there are various transformations that generate images from time series, and have achieved good results for time series classification. There are many other examples, and by being creative, it may be possible to formulate your problem as an image classification problem, and use pretrained image models to obtain state-of-the-art results!
+    
+08 What is an "architecture"?
+    The architecture is the template or structure of the model we are trying to fit. It defines the mathematical model we are trying to fit.
+    
+09 What is segmentation?
+    At its core, segmentation is a pixelwise classification problem. We attempt to predict a label for every single pixel in the image. This provides a mask for which parts of the image correspond to the given label.
+    
+10 What is y_range used for? When do we need it?
+    y_range is being used to limit the values predicted when our problem is focused on predicting a numeric value in a given range (ex: predicting movie ratings, range of 0.5-5)
+    
+11 What are "hyperparameters"?
+    Training models requires various other parameters that define how the model is trained. For example, we need to define how long we train for, or what learning rate (how fast the model parameters are allowed to change) is used. These sorts of parameters are hyperparameters.
+    
+12 What's the best way to avoid failures when using AI in an organization?
+    Key things to consider when using AI in an organization:
+        1- Make sure a training, validation, and testing set is defined properly in order to evaluate the model in an appropriate manner.
+        2- Try out a simple baseline, which future models should hopefully beat. Or even this simple baseline may be enough in some cases.
+
+13 What is a p value?
+    We pick some starting point assumption (say, there is no relationship between two variables). We then gather some data with measurements of independent and dependent variables. And then we ask ourselves, what % of the time will we see a relationship of this magnitude or greater by random chance?
+
+    One way to go about calculating the p-value would be by simulation. Another would be to use a mathematical formula to jump straight to this number.
+    
+14 What is a prior?
+    Prior as is prior knowledge or information.
+    
+15 Provide an example of where the bear classification model might work poorly in production, due to structural or style differences in the training data.
+    There are many cases that the bear classification model could fail, especially if these cases were not represented in the training data:
+
+        - The bear is partially obstructed
+        - Nighttime images are passed into the model
+        - Low-resolution images are passed into the model
+        - The bear is far away from the camera
+        - The bear training dataset is highly biased towards one type of features (eg. color)
+
+16 Where do text models currently have a major deficiency?
+    Text models can generate context-appropriate text (like replies or imitating author style). However, text models still struggle with correct responses. Given factual information (such as a knowledge base), it is still hard to generate responses that utilizes this information to generate factually correct responses, though the text can seem very compelling. This can be very dangerous, as the layman may not be able to evaluate the factual accuracy of the generated text.
+
+17 What are possible negative societal implications of text generation models?
+    The ability for text generation models to generate context-aware, highly compelling responses can be used at a massive scale to spread disinformation (“fake news”) and encourage conflict.
+    
+    Models reinforce bias (like gender bias, racial bias) in training data and create a vicious cycle of biased outputs.
+
+18 In situations where a model might make mistakes, and those mistakes could be harmful, what is a good alternative to automating a process?
+    The predictions of the model could be reviewed by human experts for them to evaluate the results and determine what is the best next step. This is especially true for applying machine learning for medical diagnoses. For example, a machine learning model for identifying strokes in CT scans can alert high priority cases for expedited review, while other cases are still sent to radiologists for review. Or other models can also augment the medical professional’s abilities, reducing risk but still improving efficiency of the workflow. For example, deep learning models can provide useful measurements for radiologists or pathologists.
+    
+19 What kind of tabular data is deep learning particularly good at?
+    Deep learning is good at analyzing tabular data that includes natural language, or high cardinality categorical columns (containing larger number of discrete choices like zip code).
+    
+20 What's a key downside of directly using a deep learning model for recommendation systems?
+    Machine learning approaches for recommendation systems will often only tell what products a user might like, and may not be recommendations that would be helpful to the user. For example, if a user is familiar with other books from the same author, it isn’t helpful to recommend those products even though the user bought the author’s book. Or, recommending products a user may have already purchased.
+    
+21 What are the steps of the Drivetrain Approach?
+    Defined Objective: what outcome am I trying to achieve?
+    Levers: what inputs can we control?
+    Data: what data we can collect?
+    Models: how the levers influence the objective?
+    
+22 How do the steps of the Drivetrain Approach map to a recommendation system?
+    The objective of a recommendation engine is to drive additional sales by surprising and delighting the customer with recommendations of items they would not have purchased without the recommendation. The lever is the ranking of the recommendations. New data must be collected to generate recommendations that will cause new sales . This will require conducting many randomized experiments in order to collect data about a wide range of recommendations for a wide range of customers. This is a step that few organizations take; but without it, you don’t have the information you need to actually optimize recommendations based on your true objective (more sales!)
+
+23 Create an image recognition model using data you curate, and deploy it on the web.
+    To be done by the reader.
+    
+24 What is DataLoaders?
+    The DataLoaders class is the class that passes the data to the fastai model. It is essentially a class that stores the required Dataloader objects (usually for train and validation sets).
+
+25 What four things do we need to tell fastai to create DataLoaders?
+    - what kinds of data we are working with
+    - how to get the list of items
+    - how to label these items
+    - how to create the validation set
+
+26 What does the splitter parameter to DataBlock do?
+    In fastai DataBlock, you provide the splitter argument a way for fastai to split up the dataset into subsets (usually train and validation set). For example, to randomly split the data, you can use fastai’s predefined RandomSplitter class, providing it with the proportion of the data used for validation.
+    
+27 How do we ensure a random split always gives the same validation set?
+    It turns out it is impossible for our computers to generate truly random numbers. Instead, they use a process known as a pseudo-random generator. However, this process can be controlled using a random seed. By setting a random seed value, the pseudo-random generator will generate the “random” numbers in a fixed manner and it will be the same for every run. Using a random seed, we can generate a random split that gives the same validation set always.

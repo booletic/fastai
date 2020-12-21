@@ -1,0 +1,137 @@
+Questionnaire
+
+01  What letters are often used to signify the independent and dependent variables?
+        x is independent. y is dependent.
+    
+02  What's the difference between the crop, pad, and squish resize approaches? When might you choose one over the others?
+        crop is the default Resize() method, and it crops the images to fit a square shape of the size requested, using the full width or height. This can result in losing some important details. For instance, if we were trying to recognize the breed of dog or cat, we may end up cropping out a key part of the body or the face necessary to distinguish between similar breeds.
+
+        pad is an alternative Resize() method, which pads the matrix of the image’s pixels with zeros (which shows as black when viewing the images). If we pad the images then we have a whole lot of empty space, which is just wasted computation for our model, and results in a lower effective resolution for the part of the image we actually use.
+
+        squish is another alternative Resize() method, which can either squish or stretch the image. This can cause the image to take on an unrealistic shape, leading to a model that learns that things look different to how they actually are, which we would expect to result in lower accuracy.
+
+        Which resizing method to use therefore depends on the underlying problem and dataset. For example, if the features in the dataset images take up the whole image and cropping may result in loss of information, squishing or padding may be more useful.
+
+        Another better method is RandomResizedCrop, in which we crop on a randomly selected region of the image. So every epoch, the model will see a different part of the image and will learn accordingly.
+
+03  What is data augmentation? Why is it needed?
+        Data augmentation refers to creating random variations of our input data, such that they appear different, but not so different that it changes the meaning of the data. Examples include flipping, rotation, perspective warping, brightness changes, etc. Data augmentation is useful for the model to better understand the basic concept of what an object is and how the objects of interest are represented in images. Therefore, data augmentation allows machine learning models to generalize . This is especially important when it can be slow and expensive to label data.
+
+04  What is the difference between item_tfms and batch_tfms?
+        item_tfms are transformations applied to a single data sample x on the CPU. Resize() is a common transform because the mini-batch of input images to a cnn must have the same dimensions. Assuming the images are RGB with 3 channels, then Resize() as item_tfms will make sure the images have the same width and height.
+    
+        batch_tfms are applied to batched data samples (aka individual samples that have been collated into a mini-batch) on the GPU. They are faster and more efficient than item_tfms. A good example of these are the ones provided by aug_transforms(). Inside are several batch-level augmentations that help many models.
+    
+05  What is a confusion matrix?
+        A class confusion matrix is a representation of the predictions made vs the correct labels. The rows of the matrix represent the actual labels while the columns represent the predictions. Therefore, the number of images in the diagonal elements represent the number of correctly classified images, while the off-diagonal elements are incorrectly classified images. Class confusion matrices provide useful information about how well the model is doing and which classes the model might be confusing.
+    
+06  What does export save?
+        export saves both the architecture, as well as the trained parameters of the neural network architecture. It also saves how the DataLoaders are defined.
+        
+07  What is it called when we use a model for getting predictions, instead of training?
+    Inference
+
+08  What are IPython widgets?
+        IPython widgets are JavaScript and Python combined functionalities that let us build and interact with GUI components directly in a Jupyter notebook. An example of this would be an upload button, which can be created with the Python function widgets.FileUpload().
+        
+09  When might you want to use CPU for deployment? When might GPU be better?
+        GPUs are best for doing identical work in parallel. If you will be analyzing single pieces of data at a time (like a single image or single sentence), then CPUs may be more cost effective instead, especially with more market competition for CPU servers versus GPU servers. GPUs could be used if you collect user responses into a batch at a time, and perform inference on the batch. This may require the user to wait for model predictions. Additionally, there are many other complexities when it comes to GPU inference, like memory management and queuing of the batches.
+        
+10  What are the downsides of deploying your app to a server, instead of to a client (or edge) device such as a phone or PC?
+        The application will require network connection, and there will be extra network latency time when submitting input and returning results. Additionally, sending private data to a network server can lead to security concerns.
+        
+11  What are three examples of problems that could occur when rolling out a bear warning system in practice?
+        The model we trained will likely perform poorly when:
+            - Handling night-time images
+            - Dealing with low-resolution images (ex: some smartphone images)
+            - The model returns prediction too slowly to be useful
+
+12  What is "out-of-domain data"?
+        Data that is fundamentally different in some aspect compared to the model’s training data. For example, an object detector that was trained exclusively with outside daytime photos is given a photo taken at night.
+        
+13  What is "domain shift"?
+        This is when the type of data changes gradually over time. For example, an insurance company is using a deep learning model as part of their pricing algorithm, but over time their customers will be different, with the original training data not being representative of current data, and the deep learning model being applied on effectively out-of-domain data.
+        
+14  What are the three steps in the deployment process?
+        - Manual process – the model is run in parallel and not directly driving any actions, with humans still checking the model outputs.
+        - Limited scope deployment – The model’s scope is limited and carefully supervised. For example, doing a geographically and time-constrained trial of model deployment, that is carefully supervised.
+        - Gradual expansion – The model scope is gradually increased, while good reporting systems are implemented in order to check for any significant changes to the actions taken compared to the manual process (i.e. the models should perform similarly to the humans, unless it is already anticipated to be better).
+
+15  How is a grayscale image represented on a computer? How about a color image?
+        Images are represented by arrays with pixel values representing the content of the image. For greyscale images, a 2-dimensional array is used with the pixels representing the greyscale values, with a range of 256 integers. A value of 0 would represent white, and a value of 255 represents black, and different shades of greyscale in between. For color images, three color channels (red, green, blue) are typicall used, with a separate 256-range 2D array used for each channel. A pixel value of 0 again represents white, with 255 representing solid red, green, or blue. The three 2-D arrays form a final 3-D array (rank 3 tensor) representing the color image.
+        
+16  How are the files and folders in the MNIST_SAMPLE dataset structured? Why?
+        There are two subfolders, train and valid, the former contains the data for model training, the latter contains the data for validating model performance after each training step. Evaluating the model on the validation set serves two purposes: a) to report a human-interpretable metric such as accuracy (in contrast to the often abstract loss functions used for training), b) to facilitate the detection of overfitting by evaluating the model on a dataset it hasn’t been trained on (in short, an overfitting model performs increasingly well on the training set but decreasingly so on the validation set). Of course, every practicioner could generate their own train/validation-split of the data. Public datasets are usually pre-split to simplifiy comparing results between implementations/publications.
+
+        Each subfolder has two subsubfolders 3 and 7 which contain the .jpg files for the respective class of images. This is a common way of organizing datasets comprised of pictures. For the full MNIST dataset there are 10 subsubfolders, one for the images for each digit.
+
+17  Explain how the "pixel similarity" approach to classifying digits works.
+        In the “pixel similarity” approach, we generate an archetype for each class we want to identify. In our case, we want to distinguish images of 3’s from images of 7’s. We define the archetypical 3 as the pixel-wise mean value of all 3’s in the training set. Analoguously for the 7’s. You can visualize the two archetypes and see that they are in fact blurred versions of the numbers they represent.
+        
+        In order to tell if a previously unseen image is a 3 or a 7, we calculate its distance to the two archetypes (here: mean pixel-wise absolute difference). We say the new image is a 3 if its distance to the archetypical 3 is lower than two the archetypical 7.
+        
+18  What is a list comprehension? Create one now that selects odd numbers from a list and doubles them.
+        x = [1, 1, 3, 4, 5, 6, 7, 9, 9]
+        arr = [i*2 for i in x if i%2 == 1]
+        
+19  What is a "rank-3 tensor"?
+        The rank of a tensor is the number of dimensions it has. An easy way to identify the rank is the number of indices you would need to reference a number within a tensor. A scalar can be represented as a tensor of rank 0 (no index), a vector can be represented as a tensor of rank 1 (one index, e.g., v[i]), a matrix can be represented as a tensor of rank 2 (two indices, e.g., a[i,j]), and a tensor of rank 3 is a cuboid or a “stack of matrices” (three indices, e.g., b[i,j,k]). In particular, the rank of a tensor is independent of its shape or dimensionality, e.g., a tensor of shape 2x2x2 and a tensor of shape 3x5x7 both have rank 3.
+        
+        Note that the term “rank” has different meanings in the context of tensors and matrices (where it refers to the number of linearly independent column vectors).
+
+20  What is the difference between tensor rank and shape? How do you get the rank from the shape?
+        Rank is the number of axes or dimensions in a tensor; shape is the size of each axis of a tensor.
+
+21  What are RMSE and L1 norm?
+        Root mean square error (RMSE), also called the L2 norm, and mean absolute difference (MAE), also called the L1 norm, are two commonly used methods of measuring “distance”. Simple differences do not work because some difference are positive and others are negative, canceling each other out. Therefore, a function that focuses on the magnitudes of the differences is needed to properly measure distances. The simplest would be to add the absolute values of the differences, which is what MAE is. RMSE takes the mean of the square (makes everything positive) and then takes the square root (undoes squaring).
+        
+22  How can you apply a calculation on thousands of numbers at once, many thousands of times faster than a Python loop?
+        As loops are very slow in Python, it is best to represent the operations as array operations rather than looping through individual elements. If this can be done, then using NumPy or PyTorch will be thousands of times faster, as they use underlying C code which is much faster than pure Python. Even better, PyTorch allows you to run operations on GPU, which will have significant speedup if there are parallel operations that can be done.
+        
+23  Create a 3×3 tensor or array containing the numbers from 1 to 9. Double it. Select the bottom-right four numbers.
+        In [ ]: a = torch.Tensor(list(range(1,10))).view(3,3); print(a)
+        Out [ ]: tensor([[1., 2., 3.],
+                        [4., 5., 6.],
+                        [7., 8., 9.]])
+        
+        In [ ]: b = 2*a; print(b)
+        Out [ ]: tensor([[ 2.,  4.,  6.],
+                        [ 8., 10., 12.],
+                        [14., 16., 18.]])
+        
+        In [ ]:  b[1:,1:]
+        Out []: tensor([[10., 12.],
+                        [16., 18.]])
+                    
+24  What is broadcasting?
+        Scientific/numerical Python packages like NumPy and PyTorch will often implement broadcasting that often makes code easier to write. In the case of PyTorch, tensors with smaller rank are expanded to have the same size as the larger rank tensor. In this way, operations can be performed between tensors with different rank.
+        
+25  Are metrics generally calculated using the training set, or the validation set? Why?
+        Metrics are generally calculated on a validation set. As the validation set is unseen data for the model, evaluating the metrics on the validation set is better in order to determine if there is any overfitting and how well the model might generalize if given similar data.
+        
+26  What is SGD?
+        SGD, or stochastic gradient descent, is an optimization algorithm. Specifically, SGD is an algorithm that will update the parameters of a model in order to minimize a given loss function that was evaluated on the predictions and target. The key idea behind SGD (and many optimization algorithms, for that matter) is that the gradient of the loss function provides an indication of how that loss function changes in the parameter space, which we can use to determine how best to update the parameters in order to minimize the loss function. This is what SGD does.
+        
+27  Why does SGD use mini-batches?
+        We need to calculate our loss function (and our gradient) on one or more data points. We cannot calculate on the whole datasets due to compute limitations and time constraints. If we iterated through each data point, however, the gradient will be unstable and imprecise, and is not suitable for training. As a compromise, we calculate the average loss for a small subset of the dataset at a time. This subset is called a mini-batch. Using mini-batches are also more computationally efficient than single items on a GPU.
+        
+28  What are the seven steps in SGD for machine learning?
+        1- Initialize the parameters – Random values often work best.
+        2- Calculate the predictions – This is done on the training set, one mini-batch at a time.
+        3- Calculate the loss – The average loss over the minibatch is calculated
+        4- Calculate the gradients – this is an approximation of how the parameters need to change in order to minimize the loss function
+        5- Stiep the weights – update the parameters based on the calculated weights
+        6- Repeat the process
+        7- Stop – In practice, this is either based on time constraints or usually based on when the training/validation losses and metrics stop improving.
+
+29  How do we initialize the weights in a model?
+        Random weights work pretty well.
+
+30  What is "loss"?
+        The loss function will return a value based on the given predictions and targets, where lower values correspond to better model predictions.
+        
+31  Why can't we always use a high learning rate?
+        The loss may “bounce” around (oscillate) or even diverge, as the optimizer is taking steps that are too large, and updating the parameters faster than it should be.
+        
+32  What is a "gradient"?
+        The gradients tell us how much we have to change each weight to make our model better. It is essentially a measure of how the loss function changes with changes of the weights of the model (the derivative)

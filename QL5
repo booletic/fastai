@@ -1,0 +1,65 @@
+Questionnaire
+
+01  Does ethics provide a list of "right answers"?
+        There is no list of do’s and dont’s. Ethics is complicated, and context-dependent. It involves the perspectives of many stakeholders. Ethics is a muscle that you have to develop and practice. In this chapter, our goal is to provide some signposts to help you on that journey.
+        
+02  How can working with people of different backgrounds help when considering ethical questions?
+        Different people’s backgrounds will help them to see things which may not be obvious to you. Working with a team is helpful for many “muscle building” activities, including this one.
+        
+03  What was the role of IBM in Nazi Germany? Why did the company participate as it did? Why did the workers participate?
+        IBM supplied the Nazis with data tabulation products necessary to track the extermination of Jews and other groups on a massive scale. This was driven from the top of the company, with marketing to Hitler and his leadership team. Company President Thomas Watson personally approved the 1939 release of special IBM alphabetizing machines to help organize the deportation of Polish Jews. Hitler awarded Watson a special “Service to the Reich” medal in 1937.
+
+        But it also happened throughout the organization. IBM and its subsidiaries provided regular training and maintenance on-site at the concentration camps: printing off cards, configuring machines, and repairing them as they broke frequently. IBM set up categorizations on their punch card system for the way that each person was killed, which group they were assigned to, and the logistical information necessary to track them through the vast Holocaust system. IBM’s code for Jews in the concentration camps was 8, where around 6,000,000 were killed. Its code for Romanis was 12 (they were labeled by the Nazis as “asocials”, with over 300,000 killed in the Zigeunerlager , or “Gypsy camp”). General executions were coded as 4, death in the gas chambers as 6.
+
+        The marketers were just doing what they could to meet their business development goals. Edwin Black, author of “IBM and the Holocaust”, said: “To the blind technocrat, the means were more important than the ends. The destruction of the Jewish people became even less important because the invigorating nature of IBM’s technical achievement was only heightened by the fantastical profits to be made at a time when bread lines stretched across the world.”
+
+04  What was the role of the first person jailed in the Volkswagen diesel scandal?
+        It was one of the engineers, James Liang, who just did what he was told.
+
+05  What was the problem with a database of suspected gang members maintained by California law enforcement officials?
+        A database of suspected gang members maintained by California law enforcement officials was found to be full of errors, including 42 babies who had been added to the database when they were less than 1 year old (28 of whom were marked as “admitting to being gang members”). In this case, there was no process in place for correcting mistakes or removing people once they’d been added.
+        
+06  Why did YouTube's recommendation algorithm recommend videos of partially clothed children to pedophiles, even though no employee at Google had programmed this feature?
+        The problem here is the centrality of metrics in driving a financially important system. When an algorithm has a metric to optimise, as you have seen, it will do everything it can to optimise that number. This tends to lead to all kinds of edge cases, and humans interacting with a system will search for, find, and exploit these edge cases and feedback loops for their advantage.
+        
+07  What are the problems with the centrality of metrics?
+        When an algorithm has a metric to optimise, as you have seen, it will do everything it can to optimise that number. This tends to lead to all kinds of edge cases, and humans interacting with a system will search for, find, and exploit these edge cases and feedback loops for their advantage.
+        
+08  Why did Meetup.com not include gender in its recommendation system for tech meetups?
+        Meetup’s algorithm could recommend fewer tech meetups to women, which resulted in fewer women finding out and attending tech meetups… which caused the algorithm to suggest even fewer tech meetups to women, and so on, in a self-reinforcing feedback loop. The Meetup.com team made the ethical decision to not incorporate gender in their recommendation system to eliminate this feedback loop.
+        
+09  What are the six types of bias in machine learning, according to Suresh and Guttag?
+        Historical, representation, measurement, evaluation, aggregation, and deployment bias.
+        
+10  Give two examples of historical race bias in the US.
+        When doctors were presented identical files, they proved less likely to recommend a helpful procedure to black patients.
+        Black people were offered higher initial prices and received smaller concessions when bargaining for a used car.
+    
+11  Where are most images in ImageNet from?
+        The United States and Western countries.
+        
+12  In the paper Does Machine Learning Automate Moral Hazard and Error why is sinusitis found to be predictive of a stroke?
+        Measurement bias.
+        
+13  What is representation bias?
+        When there is a clear, easy-to-see underlying relationship, a simple model will often assume that this relationship holds true all the time. For example, for occupations that had a higher percentage of females, a model could overestimate the prevalence of that occupation.
+        
+14  How are machines and people different, in terms of their use for making decisions?
+        Algorithmic decisions are more likely to be implemented at scale and without a process for recourse. People, on the other hand, are more likely to mistakenly believe the result of an algorithm is objective and free of errors.
+        
+15  Is disinformation the same as "fake news"?
+        Disinformation often contains seeds of truth or is comprised of half-truths taken out of context. “Fake news”, on the other hand, is simply false information.
+        
+16  Why is disinformation through auto-generated text a particularly significant issue?
+        Because deep learning provides exponentially increased capabilities.
+        
+17  What are the five ethical lenses described by the Markkula Center?
+        The Rights Approach, the Justice Approach, the Utilitarian Approach, the Common Good Approach, and the Virtue Approach.
+        
+18  Where is policy an appropriate tool for addressing data ethics issues?
+
+        Policies are an appropriate tool for addressing data ethics issues when is likely that design fixes, self regulation and technical approaches to addressing problems, involving ethical uses of Machine Learning are not working.
+
+        While such measures can be useful, they will not be sufficient to address the underlying problems that have led to our current state. For example, as long as it is incredibly profitable to create addictive technology, companies will continue to do so, regardless of whether this has the side effect of promoting conspiracy theories and polluting our information ecosystem. While individual designers may try to tweak product designs, we will not see substantial changes until the underlying profit incentives changes.
+
+        Because of the above it is almost certain that policies will have to be created by government to address these issues.

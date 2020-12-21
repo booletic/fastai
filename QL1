@@ -1,0 +1,90 @@
+Questionnaire
+
+The questions below are the same as those in the book. For more, including detailed answers and links to the video timeline, have a look at Radek Osmulski's aiquizzes.
+
+(If you're not sure of the answer to a question, try watching the next lesson and then coming back to this one, or read the first chapter of the book.)
+
+01  Do you need these for deep learning?
+        Lots of math                False
+        Lots of data                False
+        Lots of expensive computers False
+        A PhD                       False
+        
+02  Name five areas where deep learning is now the best in the world.
+        Natural Language Processing (NLP)
+        Computer Vision
+        Medicine
+        Biology
+        Robotics
+        
+03  What was the name of the first device that was based on the principle of the artificial neuron?
+        Mark I perceptron built by Frank Rosenblatt
+
+04  Based on the book of the same name, what are the requirements for parallel distributed processing (PDP)?
+        A set of processing units
+        A state of activation
+        An output function for each unit
+        A pattern of connectivity among units
+        A propagation rule for propagating patterns of activities through the network of connectivities
+        An activation rule for combining the inputs impinging on a unit with the current state of that unit to produce a new level of activation for the unit
+        A learning rule whereby patterns of connectivity are modified by experience
+        An environment within which the system must operate
+
+
+
+05  What were the two theoretical misunderstandings that held back the field of neural networks?
+        In 1969, Marvin Minsky and Seymour Papert demonstrated in their book, “Perceptrons”, that a single layer of artificial neurons cannot learn simple, critical mathematical functions like XOR logic gate. While they subsequently demonstrated in the same book that additional layers can solve this problem, only the first insight was recognized, leading to the start of the first AI winter.
+        
+        In the 1980’s, models with two layers were being explored. Theoretically, it is possible to approximate any mathematical function using two layers of artificial neurons. However, in practices, these networks were too big and too slow. While it was demonstrated that adding additional layers improved performance, this insight was not acknowledged, and the second AI winter began. In this past decade, with increased data availability, and improvements in computer hardware (both in CPU performance but more importantly in GPU performance), neural networks are finally living up to its potential.
+
+
+06  What is a GPU?
+        GPU stands for Graphics Processing Unit (also known as a graphics card). Standard computers have various components like CPUs, RAM, etc. CPUs, or central processing units, are the core units of all standard computers, and they execute the instructions that make up computer programs. GPUs, on the other hand, are specialized units meant for displaying graphics, especially the 3D graphics in modern computer games. The hardware optimizations used in GPUs allow it to handle thousands of tasks at the same time. Incidentally, these optimizations allow us to run and train neural networks hundreds of times faster than a regular CPU.
+        
+07  Open a notebook and execute a cell containing: 1+1. What happens?
+        In a Jupyter Notebook, we can create code cells and run code in an interactive manner. When we execute a cell containing some code (in this case: 1+1), the code is run by Python and the output is displayed underneath the code cell (in this case: 2).
+
+08  Follow through each cell of the stripped version of the notebook for this chapter. Before executing each cell, guess what will happen.
+        To be done by reader.
+
+09  Complete the Jupyter Notebook online appendix.
+        To be done by reader.
+        
+10  Why is it hard to use a traditional computer program to recognize images in a photo?
+        For us humans, it is easy to identify images in a photos, such as identifying cats vs dogs in a photo. This is because, subconsciously our brains have learned which features define a cat or a dog for example. But it is hard to define set rules for a traditional computer program to recognize a cat or a dog. Can you think of a universal rule to determine if a photo contains a cat or dog? How would you encode that as a computer program? This is very difficult because cats, dogs, or other objects, have a wide variety of shapes, textures, colors, and other features, and it is close to impossible to manually encode this in a traditional computer program.
+        
+11  What did Samuel mean by "weight assignment"?
+        “weight assignment” refers to the current values of the model parameters. Arthur Samuel further mentions an “ automatic means of testing the effectiveness of any current weight assignment ” and a “ mechanism for altering the weight assignment so as to maximize the performance ”. This refers to the evaluation and training of the model in order to obtain a set of parameter values that maximizes model performance.
+
+12  What term do we normally use in deep learning for what Samuel called "weights"?
+        We instead use the term parameters. In deep learning, the term “weights” has a separate meaning. (The neural network has various parameters that we fit our data to. As shown in upcoming chapters, the two types of neural network parameters are weights and biases)
+        
+13  Draw a picture that summarizes Samuel's view of a machine learning model.
+        gv('''model[shape=box3d width=1 height=0.7]
+        inputs->model->results; weights->model''')
+        
+14  Why is it hard to understand why a deep learning model makes a particular prediction?
+        This is a highly-researched topic known as interpretability of deep learning models. Deep learning models are hard to understand in part due to their “deep” nature. Think of a linear regression model. Simply, we have some input variables/data that are multiplied by some weights, giving us an output. We can understand which variables are more important and which are less important based on their weights. A similar logic might apply for a small neural network with 1-3 layers. However, deep neural networks have hundreds, if not thousands, of layers. It is hard to determine which factors are important in determining the final output. The neurons in the network interact with each other, with the outputs of some neurons feeding into other neurons. Altogether, due to the complex nature of deep learning models, it is very difficult to understand why a neural network makes a given prediction.
+        
+        However, in some cases, recent research has made it easier to better understand a neural network’s prediction. For example, as shown in this chapter, we can analyze the sets of weights and determine what kind of features activate the neurons. When applying CNNs to images, we can also see which parts of the images highly activate the model. We will see how we can make our models interpretable later in the book.
+
+15  What is the name of the theorem that shows that a neural network can solve any mathematical problem to any level of accuracy?
+        The universal approximation theorem states that neural networks can theoretically represent any mathematical function. However, it is important to realize that practically, due to the limits of available data and computer hardware, it is impossible to practically train a model to do so. But we can get very close!
+        
+16  What do you need in order to train a model?
+        You will need an architecture for the given problem. You will need data to input to your model. For most use-cases of deep learning, you will need labels for your data to compare your model predictions to. You will need a loss function that will quantitatively measure the performance of your model. And you need a way to update the parameters of the model in order to improve its performance (this is known as an optimizer).
+        
+17  How could a feedback loop impact the rollout of a predictive policing model?
+        In a predictive policing model, we might end up with a positive feedback loop, leading to a highly biased model with little predictive power. For example, we may want a model that would predict crimes, but we use information on arrests as a proxy . However, this data itself is slightly biased due to the biases in existing policing processes. Training with this data leads to a biased model. Law enforcement might use the model to determine where to focus police activity, increasing arrests in those areas. These additional arrests would be used in training future iterations of models, leading to an even more biased model. This cycle continues as a positive feedback loop
+
+18  Do we always have to use 224×224-pixel images with the cat recognition model?
+        No we do not. 224x224 is commonly used for historical reasons. You can increase the size and get better performance, but at the price of speed and memory consumption.
+        
+19  What is the difference between classification and regression?
+        Classification is focused on predicting a class or category (ex: type of pet). Regression is focused on predicting a numeric quantity (ex: age of pet).
+        
+20  What is a validation set? What is a test set? Why do we need them?
+        The validation set is the portion of the dataset that is not used for training the model, but for evaluating the model during training, in order to prevent overfitting. This ensures that the model performance is not due to “cheating” or memorization of the dataset, but rather because it learns the appropriate features to use for prediction. However, it is possible that we overfit the validation data as well. This is because the human modeler is also part of the training process, adjusting hyperparameters (see question 32 for definition) and training procedures according to the validation performance. Therefore, another unseen portion of the dataset, the test set, is used for final evaluation of the model. This splitting of the dataset is necessary to ensure that the model generalizes to unseen data.
+        
+21  What will fastai do if you don't provide a validation set?
+        fastai will automatically create a validation dataset. It will randomly take 20% of the data and assign it as the validation set ( valid_pct = 0.2 ).
